@@ -18,14 +18,12 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   //Draw
   if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-    console.log(
-      `Draw. Computer chose ${
-        computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-      }`
-    );
+    return `Draw. Computer chose ${
+      computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
+    }`;
     //playerSelection = prompt("Choose paper, rock or scissors:");
     //return playRound(playerSelection, getComputerChoice());
-    return;
+
     //Paper vs. Rock.
   } else if (
     playerSelection.toLowerCase() === "paper" &&
