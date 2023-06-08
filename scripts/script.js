@@ -18,13 +18,14 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   //Draw
   if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-    alert(
+    console.log(
       `Draw. Computer chose ${
         computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
       }`
     );
-    playerSelection = prompt("Choose paper, rock or scissors:");
-    return playRound(playerSelection, getComputerChoice());
+    //playerSelection = prompt("Choose paper, rock or scissors:");
+    //return playRound(playerSelection, getComputerChoice());
+    return;
     //Paper vs. Rock.
   } else if (
     playerSelection.toLowerCase() === "paper" &&
@@ -53,25 +54,37 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-//Iterate a number of games given.
-function game(numberOfGames) {
-  while (numberOfGames > 0) {
-    let playerSelection = prompt("Choose paper, rock or scissors:");
-    console.log(playRound(playerSelection, getComputerChoice()));
-    /* **USE BODY FOR OUTPUT**
-    let br = document.createElement("br");
-    let result = document.createTextNode(
-      playRound(playerSelection, getComputerChoice())
-    );
-    document.querySelector("body").appendChild(result);
-    document.querySelector("body").appendChild(br); 
-    */
-    numberOfGames--;
-  }
+//Play the game by selecting the image/avatar/weapon
+function weaponSelector() {
+  const images = document.querySelectorAll("img");
+  images.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      let choice = e.target.id;
+      console.log(playRound(choice, getComputerChoice()));
+    });
+  });
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-  setTimeout(function () {
-    game(5);
-  }, 200);
-});
+//Iterate a number of games given.
+// function game(numberOfGames) {
+//   while (numberOfGames > 0) {
+//     let playerSelection = prompt("Choose paper, rock or scissors:");
+//     console.log(playRound(playerSelection, getComputerChoice()));
+//     /* **USE BODY FOR OUTPUT**
+//     let br = document.createElement("br");
+//     let result = document.createTextNode(
+//       playRound(playerSelection, getComputerChoice())
+//     );
+//     document.querySelector("body").appendChild(result);
+//     document.querySelector("body").appendChild(br);
+//     */
+//     numberOfGames--;
+//   }
+// }
+
+// window.addEventListener("DOMContentLoaded", function () {
+//   setTimeout(function () {
+//     game(5);
+//   }, 200);
+// });
+window.addEventListener("DOMContentLoaded", weaponSelector);
