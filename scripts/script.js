@@ -10,6 +10,7 @@
 const resultsContainer = document.createElement("div");
 resultsContainer.style.border = "3px solid limegreen";
 resultsContainer.style.display = "flex";
+resultsContainer.style.flexWrap = "wrap";
 resultsContainer.style.justifyContent = "center";
 resultsContainer.style.height = "25vh";
 
@@ -20,7 +21,7 @@ results.style.justifyContent = "center";
 results.style.alignItems = "center";
 results.style.border = "1px solid red";
 results.style.width = "31.25rem";
-results.style.marginRight = "6.25rem";
+// results.style.marginRight = "6.25rem";
 resultsContainer.appendChild(results);
 
 //Score global variables
@@ -32,7 +33,7 @@ const score = document.createElement("div");
 score.style.display = "flex";
 score.style.flexDirection = "column";
 score.style.justifyContent = "center";
-score.style.alignItems = "left";
+score.style.alignItems = "center";
 const playerScore = document.createElement("div");
 const computerScore = document.createElement("div");
 playerScore.style.paddingLeft = "1rem";
