@@ -5,8 +5,32 @@
      2.b. Make sure function playerSelection parameter is case-insensitive. */
 /* 3. Create a new function called game(). Use the previous function inside of game() to play a 5 round game that keeps score and reports a winner or loser at the end. */
 
-//1. Create function getComputerChoice().
+/* Global Envionment */
+//Div to display results and score.
+const resultsContainer = document.createElement("div");
+resultsContainer.style.border = "3px solid limegreen";
+resultsContainer.style.display = "flex";
+resultsContainer.style.justifyContent = "center";
+resultsContainer.style.height = "25vh";
 
+//Div to display results
+const results = document.createElement("div");
+results.style.display = "flex";
+results.style.justifyContent = "center";
+results.style.alignItems = "center";
+results.style.border = "1px solid red";
+results.style.width = "31.25rem";
+results.style.marginRight = "6.25rem";
+resultsContainer.appendChild(results);
+
+//Div to display Score
+const score = document.createElement("div");
+score.style.border = "1px solid blue";
+score.style.width = "15.625rem";
+resultsContainer.appendChild(score);
+document.body.appendChild(resultsContainer);
+
+//1. Create function getComputerChoice().
 function getComputerChoice() {
   let weapon = ["Paper", "Rock", "Scissors"];
   let randomItem = weapon[Math.floor(Math.random() * weapon.length)];
@@ -14,13 +38,12 @@ function getComputerChoice() {
 }
 
 //2. Play a single round of Paper, Rock, Scissors (PRS).
-
 function playRound(playerSelection, computerSelection) {
   //Draw
   if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-    return `Draw. Computer chose ${
+    return (results.textContent = `Draw. Computer chose ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
-    }`;
+    }`);
     //playerSelection = prompt("Choose paper, rock or scissors:");
     //return playRound(playerSelection, getComputerChoice());
 
@@ -29,26 +52,27 @@ function playRound(playerSelection, computerSelection) {
     playerSelection.toLowerCase() === "paper" &&
     computerSelection.toLowerCase() === "rock"
   ) {
-    return "You Win! Paper beats Rock.";
+    // return "You Win! Paper beats Rock.";
+    return (results.textContent = "You Win! Paper beats Rock.");
     //Rock vs. Scissors.
   } else if (
     playerSelection.toLowerCase() === "rock" &&
     computerSelection.toLowerCase() === "scissors"
   ) {
-    return "You Win! Rock beats Scissors.";
+    return (results.textContent = "You Win! Rock beats Scissors.");
     //Scissors vs. Paper
   } else if (
     playerSelection.toLowerCase() === "scissors" &&
     computerSelection.toLowerCase() === "paper"
   ) {
-    return "You Win! Scissors beat paper.";
+    return (results.textContent = "You Win! Scissors beat paper.");
     //All other scenario's Computer wins.
   } else {
-    return `You Lose! ${
+    return (results.textContent = `You Lose! ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     } beats ${
       playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)
-    }.`;
+    }.`);
   }
 }
 
@@ -58,7 +82,7 @@ function weaponSelector() {
   images.forEach((image) => {
     image.addEventListener("click", (e) => {
       let choice = e.target.id;
-      console.log(playRound(choice, getComputerChoice()));
+      playRound(choice, getComputerChoice());
     });
   });
 }

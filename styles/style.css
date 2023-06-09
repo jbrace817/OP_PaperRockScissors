@@ -3,12 +3,16 @@
   padding: 0;
 }
 
-body {
+body,
+html {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
   display: flex;
+  flex-grow: 1;
   justify-content: space-around;
   align-items: flex-end;
 }
@@ -27,3 +31,10 @@ body {
   width: 383px;
   height: 302px;
 }
+
+/* #results {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid limegreen;
+  height: 100vh;
+} */
