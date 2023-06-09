@@ -23,10 +23,26 @@ results.style.width = "31.25rem";
 results.style.marginRight = "6.25rem";
 resultsContainer.appendChild(results);
 
+//Score global variables
+let player = 0;
+let computer = 0;
+
 //Div to display Score
 const score = document.createElement("div");
+score.style.display = "flex";
+score.style.flexDirection = "column";
+score.style.justifyContent = "center";
+score.style.alignItems = "left";
+const playerScore = document.createElement("div");
+const computerScore = document.createElement("div");
+playerScore.style.paddingLeft = "1rem";
+computerScore.style.paddingLeft = "1rem";
+playerScore.textContent = `Player Score: ${player}`;
+computerScore.textContent = `Computer Score: ${computer}`;
 score.style.border = "1px solid blue";
 score.style.width = "15.625rem";
+score.appendChild(playerScore);
+score.appendChild(computerScore);
 resultsContainer.appendChild(score);
 document.body.appendChild(resultsContainer);
 
@@ -52,6 +68,8 @@ function playRound(playerSelection, computerSelection) {
     playerSelection.toLowerCase() === "paper" &&
     computerSelection.toLowerCase() === "rock"
   ) {
+    console.log(player++);
+    playerScore.textContent = `Player Score: ${player}`;
     // return "You Win! Paper beats Rock.";
     return (results.textContent = "You Win! Paper beats Rock.");
     //Rock vs. Scissors.
@@ -59,15 +77,21 @@ function playRound(playerSelection, computerSelection) {
     playerSelection.toLowerCase() === "rock" &&
     computerSelection.toLowerCase() === "scissors"
   ) {
+    console.log(player++);
+    playerScore.textContent = `Player Score: ${player}`;
     return (results.textContent = "You Win! Rock beats Scissors.");
     //Scissors vs. Paper
   } else if (
     playerSelection.toLowerCase() === "scissors" &&
     computerSelection.toLowerCase() === "paper"
   ) {
+    console.log(player++);
+    playerScore.textContent = `Player Score: ${player}`;
     return (results.textContent = "You Win! Scissors beat paper.");
     //All other scenario's Computer wins.
   } else {
+    console.log(computer++);
+    computerScore.textContent = `Computer Score: ${computer}`;
     return (results.textContent = `You Lose! ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     } beats ${
