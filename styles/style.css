@@ -5,7 +5,7 @@
 
 body,
 html {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -16,6 +16,7 @@ html {
   flex-grow: 1;
   justify-content: space-around;
   align-items: end;
+  background-color: black;
 }
 
 #rock {
@@ -43,3 +44,69 @@ html {
   border: 3px solid limegreen;
   height: 100vh;
 } */
+
+.star-wars {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 300px;
+  background-color: black;
+  perspective: 400px;
+  color: #feda4a;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 500%; /*full desktop*/
+  /*font-size: 200%; mobile size*/
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  text-align: justify;
+}
+
+.crawl {
+  max-width: 100%;
+  position: relative;
+  top: -100px;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear;
+  animation-duration: 90s;
+}
+
+@media (max-width: 576px) {
+  .star-wars {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    background-color: black;
+    perspective: 400px;
+    color: #feda4a;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    /* font-size: 500%; full desktop */
+    font-size: 200%; /*mobile size*/
+    font-weight: 600;
+    letter-spacing: 3px;
+    line-height: 150%;
+    text-align: justify;
+  }
+
+  .crawl {
+    max-width: 100%;
+    position: relative;
+    top: -100px;
+    transform-origin: 50% 100%;
+    animation: crawl 60s linear;
+    animation-duration: 150s;
+  }
+}
+
+@keyframes crawl {
+  0% {
+    top: 0;
+    transform: rotateX(20deg) translateZ(0);
+  }
+  100% {
+    top: -6000px;
+
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
