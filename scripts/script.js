@@ -10,17 +10,25 @@
 const resultsContainer = document.createElement("div");
 resultsContainer.style.border = "3px solid limegreen";
 resultsContainer.style.display = "flex";
+resultsContainer.style.flexDirection = "column";
+resultsContainer.style.justifyContent = "space-around";
+
 resultsContainer.style.flexWrap = "wrap";
-resultsContainer.style.justifyContent = "center";
+// resultsContainer.style.justifyContent = "center";
 resultsContainer.style.height = "25vh";
+resultsContainer.style.backgroundColor = "black";
 
 //Div to display results
 const results = document.createElement("div");
 results.style.display = "flex";
 results.style.justifyContent = "center";
 results.style.alignItems = "center";
-results.style.border = "1px solid red";
-results.style.width = "31.25rem";
+// results.style.border = "8px solid #d8d8d8";
+results.style.borderRadius = "5px";
+// results.style.width = "31.25rem";
+results.style.color = "#feda4a";
+results.style.fontSize = "2rem";
+results.style.flexGrow = "1";
 // results.style.marginRight = "6.25rem";
 resultsContainer.appendChild(results);
 
@@ -31,21 +39,36 @@ let computer = 0;
 //Div to display Score
 const score = document.createElement("div");
 score.style.display = "flex";
-score.style.flexDirection = "column";
-score.style.justifyContent = "center";
-score.style.alignItems = "center";
+// score.style.flexDirection = "column";
+score.style.justifyContent = "space-around";
+score.style.flexGrow = "1";
+score.style.alignItems = "end";
 const playerScore = document.createElement("div");
 const computerScore = document.createElement("div");
-playerScore.style.paddingLeft = "1rem";
-computerScore.style.paddingLeft = "1rem";
-playerScore.textContent = `Player Score: ${player}`;
-computerScore.textContent = `Computer Score: ${computer}`;
-score.style.border = "1px solid blue";
-score.style.width = "15.625rem";
+playerScore.style.color = "#feda4a";
+computerScore.style.color = "#feda4a";
+// playerScore.style.paddingLeft = "1rem";
+// computerScore.style.paddingLeft = "1rem";
+playerScore.textContent = `Heroes: ${player}`;
+computerScore.textContent = `AI: ${computer}`;
+playerScore.style.fontSize = "5rem";
+computerScore.style.fontSize = "5rem";
+// score.style.border = "8px solid #d8d8d8";
+score.style.borderRadius = "5px";
+// score.style.marginLeft = "1rem";
+// score.style.width = "15.625rem";
 score.appendChild(playerScore);
 score.appendChild(computerScore);
 resultsContainer.appendChild(score);
 document.body.appendChild(resultsContainer);
+
+const mediaQuery = window.matchMedia("(max-width: 576px)");
+if (mediaQuery.matches) {
+  results.style.fontSize = "1.5rem";
+  // score.style.marginLeft = "0";
+  playerScore.style.fontSize = "3rem";
+  computerScore.style.fontSize = "3rem";
+}
 
 //1. Create function getComputerChoice().
 function getComputerChoice() {
@@ -70,7 +93,7 @@ function playRound(playerSelection, computerSelection) {
     computerSelection.toLowerCase() === "rock"
   ) {
     console.log(player++);
-    playerScore.textContent = `Player Score: ${player}`;
+    playerScore.textContent = `Heroes: ${player}`;
     // return "You Win! Paper beats Rock.";
     return (results.textContent = "You Win! Paper beats Rock.");
     //Rock vs. Scissors.
@@ -79,7 +102,9 @@ function playRound(playerSelection, computerSelection) {
     computerSelection.toLowerCase() === "scissors"
   ) {
     console.log(player++);
-    playerScore.textContent = `Player Score: ${player}`;
+    playerScore.textContent = `Heroes: ${player}`;
+    const theRock = document.getElementById("rock");
+    theRock.src = "images/theRock.gif";
     return (results.textContent = "You Win! Rock beats Scissors.");
     //Scissors vs. Paper
   } else if (
@@ -87,12 +112,12 @@ function playRound(playerSelection, computerSelection) {
     computerSelection.toLowerCase() === "paper"
   ) {
     console.log(player++);
-    playerScore.textContent = `Player Score: ${player}`;
+    playerScore.textContent = `Heroes: ${player}`;
     return (results.textContent = "You Win! Scissors beat paper.");
     //All other scenario's Computer wins.
   } else {
     console.log(computer++);
-    computerScore.textContent = `Computer Score: ${computer}`;
+    computerScore.textContent = `AI: ${computer}`;
     return (results.textContent = `You Lose! ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     } beats ${
@@ -110,6 +135,27 @@ function weaponSelector() {
       playRound(choice, getComputerChoice());
     });
   });
+}
+
+function fadeIn(element, timeInMs) {
+  setTimeout(() => {
+    element.style.visibility = "visible";
+  }, timeInMs);
+}
+
+function loadPage() {
+  const paperMario = document.getElementById("paper");
+  const scissorHands = document.getElementById("scissors");
+  const theRock = document.getElementById("rock");
+  const test = document.getElementById("test");
+
+  fadeIn(theRock, 2000);
+  fadeIn(paperMario, 2500);
+  fadeIn(scissorHands, 3000);
+  setTimeout(() => {
+    test.innerText = "Now go!!";
+  }, 3500);
+  weaponSelector();
 }
 
 //Iterate a number of games given.
@@ -134,4 +180,4 @@ function weaponSelector() {
 //     game(5);
 //   }, 200);
 // });
-window.addEventListener("DOMContentLoaded", weaponSelector);
+window.addEventListener("DOMContentLoaded", loadPage);
