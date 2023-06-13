@@ -8,6 +8,7 @@ html {
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .container {
@@ -49,11 +50,11 @@ html {
   overflow: hidden;
   display: flex;
   justify-content: center;
-  height: 300px;
+  height: 100%;
   background-color: black;
   perspective: 400px;
   color: #feda4a;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  /* font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif; */
   font-size: 500%; /*full desktop*/
   /*font-size: 200%; mobile size*/
   font-weight: 600;
@@ -71,12 +72,32 @@ html {
   animation-duration: 90s;
 }
 
+#playNow {
+  display: none;
+  background-color: #feda4a;
+  border: #feda4a;
+  border-radius: 10px;
+  width: 193px;
+  height: 74px;
+  font-size: 2rem;
+  font-weight: bolder;
+  position: absolute;
+  left: 0;
+  right: 10px;
+  top: 10px;
+  bottom: 0;
+  margin: auto;
+  animation: fadeInButton ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 @media (max-width: 576px) {
   .star-wars {
     overflow: hidden;
     display: flex;
     justify-content: center;
-    height: 300px;
+    height: 100%;
     background-color: black;
     perspective: 400px;
     color: #feda4a;
@@ -108,5 +129,14 @@ html {
     top: -6000px;
 
     transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
   }
 }
