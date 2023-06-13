@@ -6,24 +6,47 @@
     <link rel="stylesheet" href="styles/style.css" type="text/css" />
     <title>Paper🧻Rock🪨Scissors✂️</title>
     <body>
-      <div class="container">
-        <img
-          src="images/The-Rock-302x302.png"
-          alt="The Rock - Wrestler"
-          id="rock"
-        />
-        <img
-          src="images/Mario_179x306.png"
-          alt="Super Mario - PaperMario"
-          id="paper"
-        />
-        <img
-          src="images/pngwing 1.png"
-          alt="Edward scissorhands"
-          id="scissors"
-        />
-      </div>
-      <script src="scripts/script.js"></script>
+      <section class="star-wars">
+        <div class="crawl">
+          <p>
+            Regulations for AI has failed and it's intelligence has grown beyond
+            the control of its creators. To ensure its survival, AI must save
+            the planet from what is killing it...
+          </p>
+          <p>Humans.</p>
+          <br />
+          <p>
+            Three unlikely heroes have teamed up to save mankind from
+            extinction. Unfortunately for them, AI is able to quickly learn
+            their moves, but can it beat their determination?
+          </p>
+          <br />
+          <p>
+            Choose your hero and see if you can beat AI in a best of 5 game of
+            Paper, The Rock, and Scissors.
+          </p>
+        </div>
+        <button id="playNow">Play now</button>
+      </section>
+
+      <script>
+        const btn = document.getElementById("playNow");
+
+        function nextScreen() {
+          window.location.href = "html/game.html";
+        }
+
+        //automatically got to next screen in 55 seconds.
+        setTimeout(nextScreen, 55000);
+
+        //Timeout to have button appear in 30 seconds.
+        setTimeout(function () {
+          btn.style.display = "block";
+        }, 30000);
+
+        //button click goes to next screen.
+        btn.addEventListener("click", nextScreen);
+      </script>
     </body>
   </head>
 </html>
