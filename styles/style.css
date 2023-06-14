@@ -37,6 +37,18 @@ html {
   animation-timing-function: steps(30, end);
   animation-fill-mode: forwards;
 }
+.forward {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #feda4a;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(30, end);
+  animation-fill-mode: forwards;
+}
 
 .reverse {
   font-size: 5rem;
@@ -71,7 +83,7 @@ html {
   /* flex-wrap: wrap; */
   flex-grow: 1;
   justify-content: space-around;
-  align-items: end;
+  align-items: flex-end;
   background-color: black;
 }
 
@@ -189,6 +201,13 @@ figcaption {
 
   .heading > p {
     font-size: 250%;
+  }
+
+  figcaption {
+    color: #feda4a;
+    text-align: center;
+    font-size: 85%;
+    animation: fadeInImages ease-in-out 8s;
   }
 }
 

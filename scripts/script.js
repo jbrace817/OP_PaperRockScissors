@@ -6,9 +6,15 @@
 /* 3. Create a new function called game(). Use the previous function inside of game() to play a 5 round game that keeps score and reports a winner or loser at the end. */
 
 /* Global Envionment */
+//Global Variables
+const imageContainer = document.querySelector(".container");
+const old = imageContainer.innerHTML;
+const headerText = document.querySelector(".headerText");
+const playAgainbtn = document.querySelector(".playAgain");
+
 //Div to display results and score.
 const resultsContainer = document.createElement("div");
-resultsContainer.style.border = "3px solid limegreen";
+// resultsContainer.style.border = "3px solid limegreen";
 resultsContainer.style.display = "flex";
 resultsContainer.style.flexDirection = "column";
 resultsContainer.style.justifyContent = "space-around";
@@ -47,24 +53,16 @@ const playerScore = document.createElement("div");
 const computerScore = document.createElement("div");
 playerScore.style.color = "#feda4a";
 computerScore.style.color = "#feda4a";
-// playerScore.style.paddingLeft = "1rem";
-// computerScore.style.paddingLeft = "1rem";
 playerScore.textContent = `Heroes: ${player}`;
 computerScore.textContent = `AI: ${computer}`;
 playerScore.style.fontSize = "5rem";
 computerScore.style.fontSize = "5rem";
 // score.style.border = "8px solid #d8d8d8";
 score.style.borderRadius = "5px";
-// score.style.marginLeft = "1rem";
-// score.style.width = "15.625rem";
 score.appendChild(playerScore);
 score.appendChild(computerScore);
 resultsContainer.appendChild(score);
 document.body.appendChild(resultsContainer);
-
-//Original Image container
-const imageContainer = document.querySelector(".container");
-const old = imageContainer.innerHTML;
 
 const mediaQuery = window.matchMedia("(max-width: 576px)");
 if (mediaQuery.matches) {
@@ -72,6 +70,7 @@ if (mediaQuery.matches) {
   // score.style.marginLeft = "0";
   playerScore.style.fontSize = "3rem";
   computerScore.style.fontSize = "3rem";
+  headerText.style.fontSize = "2rem";
 }
 
 //1. Create function getComputerChoice().
@@ -88,8 +87,6 @@ function playRound(playerSelection, computerSelection) {
     return (results.textContent = `Draw. Computer chose ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     }`);
-    //playerSelection = prompt("Choose paper, rock or scissors:");
-    //return playRound(playerSelection, getComputerChoice());
 
     //Paper vs. Rock.
   } else if (
@@ -98,6 +95,15 @@ function playRound(playerSelection, computerSelection) {
   ) {
     console.log(player++);
     playerScore.textContent = `Heroes: ${player}`;
+    if (player === 5) {
+      headerText.classList.remove("reverse");
+      headerText.style.display = "block";
+      headerText.innerText = "Heroes Win!";
+      playAgainbtn.style.display = "block";
+      imageContainer.innerHTML =
+        '<img style="max-width: 100%" src="../images/PngItem_1234727.png" />';
+      playAgainbtn.addEventListener("click", playAgain);
+    }
     // return "You Win! Paper beats Rock.";
     return (results.textContent = "You Win! Paper beats Rock.");
     //Rock vs. Scissors.
@@ -107,8 +113,17 @@ function playRound(playerSelection, computerSelection) {
   ) {
     console.log(player++);
     playerScore.textContent = `Heroes: ${player}`;
-    const theRock = document.getElementById("rock");
-    theRock.src = "../images/theRock.gif";
+
+    if (player === 5) {
+      headerText.classList.remove("reverse");
+      headerText.classList.add("forward");
+      headerText.style.display = "block";
+      headerText.innerText = "Heroes Win!";
+      playAgainbtn.style.display = "block";
+      imageContainer.innerHTML =
+        '<img style="max-width: 100%" src="../images/theRock.gif" />';
+      playAgainbtn.addEventListener("click", playAgain);
+    }
     return (results.textContent = "You Win! Rock beats Scissors.");
     //Scissors vs. Paper
   } else if (
@@ -117,22 +132,27 @@ function playRound(playerSelection, computerSelection) {
   ) {
     console.log(player++);
     playerScore.textContent = `Heroes: ${player}`;
+    if (player === 5) {
+      headerText.classList.remove("reverse");
+      headerText.style.display = "block";
+      headerText.innerText = "Heroes Win!";
+      playAgainbtn.style.display = "block";
+      imageContainer.innerHTML =
+        '<img style="max-width: 100%" src="../images/scissors.gif" />';
+      playAgainbtn.addEventListener("click", playAgain);
+    }
     return (results.textContent = "You Win! Scissors beat paper.");
     //All other scenario's Computer wins.
   } else {
     console.log(computer++);
     computerScore.textContent = `AI: ${computer}`;
 
-    const headerText = document.querySelector(".headerText");
-    const playAgainbtn = document.querySelector(".playAgain");
-
     if (computer === 5) {
       headerText.classList.remove("reverse");
       headerText.style.display = "block";
       headerText.innerText = "AI Wins";
       playAgainbtn.style.display = "block";
-      imageContainer.setAttribute("id", "rock");
-      imageContainer.innerHTML = '<img src="../images/terminatorEyes.png" />';
+      imageContainer.innerHTML = '<img src="../images/terminator.gif" />';
       fadeIn(imageContainer, 0);
       playAgainbtn.addEventListener("click", playAgain);
     }
@@ -163,13 +183,20 @@ function fadeIn(element, timeInMs) {
 }
 
 function playAgain() {
-  const paperMario = document.getElementById("paper");
-  const scissorHands = document.getElementById("scissors");
-  const theRock = document.getElementById("rock");
+  headerText.style.display = "none";
+  results.textContent = "";
+  setTimeout(() => {
+    headerText.style.display = "block";
+    headerText.innerHTML = "Can you save humanity?";
+  }, 500);
+  computer = 0;
+  player = 0;
+  playerScore.textContent = `Heroes: ${player}`;
+  computerScore.textContent = `AI: ${computer}`;
+  playAgainbtn.style.display = "none";
   imageContainer.removeAttribute("id", "rock");
   imageContainer.innerHTML = old;
   loadPage();
-  console.log("click");
 }
 
 function loadPage() {
@@ -192,26 +219,4 @@ function loadPage() {
   weaponSelector();
 }
 
-//Iterate a number of games given.
-// function game(numberOfGames) {
-//   while (numberOfGames > 0) {
-//     let playerSelection = prompt("Choose paper, rock or scissors:");
-//     console.log(playRound(playerSelection, getComputerChoice()));
-//     /* **USE BODY FOR OUTPUT**
-//     let br = document.createElement("br");
-//     let result = document.createTextNode(
-//       playRound(playerSelection, getComputerChoice())
-//     );
-//     document.querySelector("body").appendChild(result);
-//     document.querySelector("body").appendChild(br);
-//     */
-//     numberOfGames--;
-//   }
-// }
-
-// window.addEventListener("DOMContentLoaded", function () {
-//   setTimeout(function () {
-//     game(5);
-//   }, 200);
-// });
 window.addEventListener("DOMContentLoaded", loadPage);
