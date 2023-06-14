@@ -15,6 +15,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background-color: black;
 }
 
@@ -24,8 +25,7 @@ html {
   align-items: center;
 }
 
-.heading > p {
-  overflow: hidden;
+.headerText {
   font-size: 5rem;
   font-weight: bold;
   color: #feda4a;
@@ -38,6 +38,34 @@ html {
   animation-fill-mode: forwards;
 }
 
+.reverse {
+  font-size: 5rem;
+  font-weight: bold;
+  color: #feda4a;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typingReverse;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(30, end);
+  animation-fill-mode: forwards;
+}
+
+.playAgain {
+  display: none;
+  margin-top: 2rem;
+  background-color: #feda4a;
+  border: #feda4a;
+  border-radius: 10px;
+  width: 193px;
+  height: 74px;
+  font-size: 2rem;
+  font-weight: bolder;
+  animation: fadeInButton ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
 .container {
   display: flex;
   /* flex-wrap: wrap; */
@@ -47,8 +75,15 @@ html {
   background-color: black;
 }
 
+figcaption {
+  color: #feda4a;
+  text-align: center;
+  font-size: 200%;
+  animation: fadeInImages ease-in-out 8s;
+}
+
 #rock {
-  max-width: 30%;
+  max-width: 100%;
   height: auto;
   visibility: hidden;
   animation: fadeInImages ease-in-out 8s;
@@ -57,7 +92,7 @@ html {
 #paper {
   /* width: 190px;
   height: 288px; */
-  max-width: 18%;
+  max-width: 100%;
   height: auto;
   visibility: hidden;
   animation: fadeInImages ease-in-out 10s;
@@ -66,7 +101,7 @@ html {
 #scissors {
   /* width: 383px;
   height: 302px; */
-  max-width: 35%;
+  max-width: 100%;
   height: auto;
   visibility: hidden;
   animation: fadeInImages ease-in-out 10s;
@@ -194,5 +229,13 @@ html {
   }
   to {
     width: 100%;
+  }
+}
+@keyframes typingReverse {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
   }
 }

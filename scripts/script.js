@@ -62,6 +62,10 @@ score.appendChild(computerScore);
 resultsContainer.appendChild(score);
 document.body.appendChild(resultsContainer);
 
+//Original Image container
+const imageContainer = document.querySelector(".container");
+const old = imageContainer.innerHTML;
+
 const mediaQuery = window.matchMedia("(max-width: 576px)");
 if (mediaQuery.matches) {
   results.style.fontSize = "1.5rem";
@@ -104,7 +108,7 @@ function playRound(playerSelection, computerSelection) {
     console.log(player++);
     playerScore.textContent = `Heroes: ${player}`;
     const theRock = document.getElementById("rock");
-    theRock.src = "images/theRock.gif";
+    theRock.src = "../images/theRock.gif";
     return (results.textContent = "You Win! Rock beats Scissors.");
     //Scissors vs. Paper
   } else if (
@@ -118,6 +122,20 @@ function playRound(playerSelection, computerSelection) {
   } else {
     console.log(computer++);
     computerScore.textContent = `AI: ${computer}`;
+
+    const headerText = document.querySelector(".headerText");
+    const playAgainbtn = document.querySelector(".playAgain");
+
+    if (computer === 5) {
+      headerText.classList.remove("reverse");
+      headerText.style.display = "block";
+      headerText.innerText = "AI Wins";
+      playAgainbtn.style.display = "block";
+      imageContainer.setAttribute("id", "rock");
+      imageContainer.innerHTML = '<img src="../images/terminatorEyes.png" />';
+      fadeIn(imageContainer, 0);
+      playAgainbtn.addEventListener("click", playAgain);
+    }
     return (results.textContent = `You Lose! ${
       computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)
     } beats ${
@@ -137,24 +155,40 @@ function weaponSelector() {
   });
 }
 
+//function to fade in elements
 function fadeIn(element, timeInMs) {
   setTimeout(() => {
     element.style.visibility = "visible";
   }, timeInMs);
 }
 
+function playAgain() {
+  const paperMario = document.getElementById("paper");
+  const scissorHands = document.getElementById("scissors");
+  const theRock = document.getElementById("rock");
+  imageContainer.removeAttribute("id", "rock");
+  imageContainer.innerHTML = old;
+  loadPage();
+  console.log("click");
+}
+
 function loadPage() {
   const paperMario = document.getElementById("paper");
   const scissorHands = document.getElementById("scissors");
   const theRock = document.getElementById("rock");
-  const test = document.getElementById("test");
+  const headerText = document.querySelector(".headerText");
 
   fadeIn(theRock, 2000);
   fadeIn(paperMario, 2500);
   fadeIn(scissorHands, 3000);
   setTimeout(() => {
-    test.innerText = "Now go!!";
-  }, 3500);
+    // headerText.classList.remove("headerText");
+    headerText.classList.add("reverse");
+  }, 4500);
+  setTimeout(() => {
+    headerText.style.display = "none";
+  }, 8000);
+
   weaponSelector();
 }
 
