@@ -76,6 +76,7 @@ html {
   animation: fadeInButton ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  cursor: pointer;
 }
 
 .container {
@@ -170,6 +171,7 @@ figcaption {
   animation: fadeInButton ease 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  cursor: pointer;
 }
 
 @media (max-width: 576px) {

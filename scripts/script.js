@@ -101,7 +101,7 @@ function playRound(playerSelection, computerSelection) {
       headerText.innerText = "Heroes Win!";
       playAgainbtn.style.display = "block";
       imageContainer.innerHTML =
-        '<img style="max-width: 100%" src="../images/PngItem_1234727.png" />';
+        '<img style="max-width: 100%" src="../images/PngItem_123472.png" />';
       playAgainbtn.addEventListener("click", playAgain);
     }
     // return "You Win! Paper beats Rock.";
@@ -150,11 +150,11 @@ function playRound(playerSelection, computerSelection) {
     if (computer === 5) {
       headerText.classList.remove("reverse");
       headerText.style.display = "block";
-      headerText.innerText = "AI Wins";
       playAgainbtn.style.display = "block";
       imageContainer.innerHTML =
         '<img width: 100%" src="../images/terminator.gif" />';
       // fadeIn(imageContainer, 0);
+      headerText.innerText = "AI Wins";
       playAgainbtn.addEventListener("click", playAgain);
     }
     return (results.textContent = `You Lose! ${
@@ -195,9 +195,12 @@ function playAgain() {
   playerScore.textContent = `Heroes: ${player}`;
   computerScore.textContent = `AI: ${computer}`;
   playAgainbtn.style.display = "none";
-  imageContainer.removeAttribute("id", "rock");
-  imageContainer.innerHTML = old;
-  loadPage();
+  imageContainer.innerHTML = "none";
+
+  setTimeout(() => {
+    imageContainer.innerHTML = old;
+    loadPage();
+  }, 3000);
 }
 
 function loadPage() {
@@ -210,7 +213,6 @@ function loadPage() {
   fadeIn(paperMario, 2500);
   fadeIn(scissorHands, 3000);
   setTimeout(() => {
-    // headerText.classList.remove("headerText");
     headerText.classList.add("reverse");
   }, 4500);
   setTimeout(() => {
