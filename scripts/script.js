@@ -152,8 +152,9 @@ function playRound(playerSelection, computerSelection) {
       headerText.style.display = "block";
       headerText.innerText = "AI Wins";
       playAgainbtn.style.display = "block";
-      imageContainer.innerHTML = '<img src="../images/terminator.gif" />';
-      fadeIn(imageContainer, 0);
+      imageContainer.innerHTML =
+        '<img width: 100%" src="../images/terminator.gif" />';
+      // fadeIn(imageContainer, 0);
       playAgainbtn.addEventListener("click", playAgain);
     }
     return (results.textContent = `You Lose! ${
